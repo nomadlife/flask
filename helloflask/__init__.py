@@ -5,6 +5,38 @@ from datetime import datetime, date, timedelta
 app = Flask(__name__)
 app.debug = True
 
+app.config.update(
+    SECRET_KEY='X1243yRH!mMwf',
+    SESSION_COOKIE_NAME = 'pyweb_flask_session',
+    PERMANENT_SESSION_LIFETIME=timedelta(31)
+)
+
+
+
+
+@app.route('/wc')
+def wc():
+    key = request.args.get("key")
+    val = request.args.get('val')
+    res = Response("Set COOKIE")
+    res.set_cookie(key,val)
+    session['Token'] = '123X'
+    return make_response(res)
+
+@app.route('/rc')
+def rc():
+    key = request.args.get('key')
+    val = request.cookies.get(key)
+    return "cookie['" + key + "] = " + val + ' , ' + session.get('Token')
+
+@app.route('/delsess')
+def delsess():
+    if session.get('Token'):
+        del session['Token']
+    return "Session이 삭제되었습니다!"
+
+
+
 
 # request environment
 
