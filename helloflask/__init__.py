@@ -1,5 +1,5 @@
 from flask import Flask, g, request, Response, make_response
-from flask import session
+from flask import session, render_template
 from datetime import datetime, date, timedelta
 
 app = Flask(__name__)
@@ -11,7 +11,9 @@ app.config.update(
     PERMANENT_SESSION_LIFETIME=timedelta(31)
 )
 
-
+@app.route("/tmpl")
+def t():
+    return render_template('index.html', title="TITLE")
 
 
 @app.route('/wc')
