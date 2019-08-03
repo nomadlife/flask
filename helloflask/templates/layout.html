@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Layout</title>
+</head>
+<body>
+	<h1>{% block title %} 여기가 타이틀입니다 {% endblock %} - Layout Title</h1>
+	
+	<div class="section">
+	{% block section %} this is section {% endblock %}
+	</div>
+	
+	{% block footer %}
+		<p>&copy; Cooyright ... </p>
+	{% endblock %}
+</body>
+</html>

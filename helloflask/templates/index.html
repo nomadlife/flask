@@ -4,9 +4,77 @@
 	<meta charset="UTF-8">
 	
 	<title>Jinja Test page</title>
+	<!-- <link rel="stylesheet" href="static/css/style.css"> -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
 </head>
 <body>
-	<h1>jinja template : {{title}}</h1>
-</body>
+	{% set title='TTT' %}
+	<h1>jinja template : {{title}} - {{mu}}</h1>
+	<hr>
+	<div>
+		Copyright <a href="tmpl3">jinja template test</a>
+		Copyright <a href="{{ url_for('tmpl3') }}">jinja template test</a>
+	</div>
+	
+	<ul>
+		{% for nav in navs recursive %}
+		<li>
+			<a href="{{nav.url | e}}">{{nav.title}} - {{loop.depth}}</a>
+			{%- if nav.children -%}
+			<ul class="{% if loop.depth != 1 %} font-sm {% endif %}">
+				{{loop(nav.children)}}
+			</ul>
+			{% endif %}
+		</li>
+		{% endfor %}
+	</ul>
+	
+	<hr>
+	
+	<ul>
+		{% for rank, title, name, hide, ref in lst2 recursive %}
+		<li>
+			{{title}}: {{name}}
+			<ul class="sub">{{loop(ref)}}</ul>
+		</li>
+		{% endfor %}
+	</ul>
+	
+	<hr>
+	<ul>
+		{% for item in lst %}
+		<li>{{item[0]}} : {{item[1]}}</li>
+		{% endfor %}
+		
+		<hr>
+		
+		{% for title, name in lst %}
+		<li class="{{loop.cycle('aaa','bbb')}}">{{title}}: {{name}} - {{loop.first}}</li>
+		{% endfor %}
+	</ul>
+	
+	<hr>
+		
+	{{ ">> <strong>Strong</strong>" | escape }}
+	
+	{{ "<strong>Strong1</strong>" | safe}}
+	{{ "<strong>Strong12</strong>" | striptags }}
+	
+	<hr>
+	{% raw %}
+		{% if true %}
+			TTT
+		{% endif %}
+	{% endraw %}
+	
+	<hr>
+	<pre>
+	ttt 한글
+	{%- if true -%}
+		TTT
+	{%- endif -%}qqq
+	</pre>
+
+	</body>
 </html>
 

@@ -1,9 +1,12 @@
 from flask import Flask, g, request, Response, make_response
-from flask import session, render_template
+from flask import session, render_template, Markup
 from datetime import datetime, date, timedelta
 
 app = Flask(__name__)
 app.debug = True
+app.jinja_env.trim_blocks = True
+
+
 
 app.config.update(
     SECRET_KEY='X1243yRH!mMwf',
@@ -11,9 +14,57 @@ app.config.update(
     PERMANENT_SESSION_LIFETIME=timedelta(31)
 )
 
+
+@app.route('/main')
+def main():
+    return render_template('main.html', title='MAIN!!') 
+
+
+class Nav:
+    def __init__(self, title, url='#', children=[]):
+        self.title = title
+        self.url = url
+        self.children = children 
+
+@app.route('/tmpl3')
+def tmpl3():
+    py = Nav("파이썬", "localhost:5000/")
+    java = Nav("자바", "localhost:5000/")
+    t_prg = Nav("프로그래밍 언어", "localhost:5000/", [py, java])
+    
+    jinja = Nav("jinja", "localhost:5000/")
+    gc = Nav("Genshi, Cheetah", "localhost:5000/")
+    flask = Nav("플라스크", "localhost:5000/", [jinja, gc])
+    
+    spr = Nav("스프링", "localhost:5000/")
+    ndjs = Nav("노드js", "localhost:5000/")
+    t_webf = Nav("웹 프레임워크", "localhost:5000/", [flask, spr, ndjs])
+    
+    my = Nav("나의 일상", "localhost:5000/")
+    issue = Nav("이슈 게사판", "localhost:5000/")
+    t_others = Nav("기타", "localhost:5000/", [my, issue])
+    return render_template("index.html", navs=[t_prg, t_webf, t_others])
+
+
+@app.route('/tmpl2')
+def tmpl2():
+    a = (1,"만남1","김건모",False, [])
+    b = (2,"만남2","노사연",True, [a])
+    c = (3,"만남3","익명",False, [a,b])
+    d = (4,"만남4","익명",False, [a,b,c])
+    
+    return render_template("index.html", lst2=[a,b,c,d])
+    
+
 @app.route("/tmpl")
 def t():
-    return render_template('index.html', title="TITLE")
+    tit = Markup("<strong>Title</strong>")
+    mu = Markup("<h1>iii = <i>%s</i></h1>")
+    h = mu % "Italic"
+    print("h=", h)
+    
+    lst = [("만남1","김건모"),("만남2","노사연"),("만남3","노사봉")]
+    return render_template('index.html', title=tit, mu = h, lst = lst)
 
 
 @app.route('/wc')
