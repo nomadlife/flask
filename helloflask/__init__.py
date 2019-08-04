@@ -18,6 +18,10 @@ app.config.update(
 def top200():
     return render_template('app.html', title="app MAIN!!")
 
+# @app.route('/top102')
+# def top102():
+#     return render_template('application2.html', title="MAIN2!!")
+
 @app.route('/top100')
 def top100():
     return render_template('application.html', title="MAIN!!")
