@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Melon Top 100</title>
+  <title>{% block document_title %}Melon Top 100 {% endblock %}</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
   <!-- Bootstrap core CSS -->
@@ -17,6 +17,12 @@
   
   <!-- MDB core JavaScript -->
 </head>
+
+{% macro test_macro(type) -%}
+<h3>
+    TEST MACRO: {{type}}
+</h3>
+{%- endmacro %}
 
 <body>
 
@@ -103,6 +109,9 @@
   </header>
   <!--Main Navigation-->
 
+  {% block test %}
+  {% endblock %}
+  
   <!--Main layout-->
   <main class="mt-5 pt-5">
     <div class="container">
@@ -516,7 +525,7 @@
     new WOW().init();
 
     // $(document).ready
-    $('#basicExampleModal').modal('show');
+    // $('#basicExampleModal').modal('show');
 
   </script>
 </body>

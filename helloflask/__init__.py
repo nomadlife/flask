@@ -16,7 +16,7 @@ app.config.update(
 
 @app.route('/top200')
 def top200():
-    return render_template('app.html', title="app MAIN!!")
+    return render_template('application.html', title="app MAIN!!")
 
 # @app.route('/top102')
 # def top102():
@@ -24,7 +24,7 @@ def top200():
 
 @app.route('/top100')
 def top100():
-    return render_template('application.html', title="MAIN!!")
+    return render_template('app.html', title="MAIN!!")
 
 @app.route('/main')
 def main():
