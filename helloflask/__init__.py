@@ -14,6 +14,13 @@ app.config.update(
     PERMANENT_SESSION_LIFETIME=timedelta(31)
 )
 
+@app.route('/top200')
+def top200():
+    return render_template('app.html', title="app MAIN!!")
+
+@app.route('/top100')
+def top100():
+    return render_template('application.html', title="MAIN!!")
 
 @app.route('/main')
 def main():
