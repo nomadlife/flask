@@ -24,6 +24,13 @@
 </h3>
 {%- endmacro %}
 
+{% macro test_macro2(name, class='aaa') -%}
+  <h3 class="{{class}}">
+  TEST MACRO2 : {{name}} - {{test_macro.caller}}
+  <div> {{caller()}} </div>
+  </h3>
+{%- endmacro %}
+
 <body>
 
   <!--Main Navigation-->
