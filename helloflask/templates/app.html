@@ -1,10 +1,15 @@
 {% extends "base.html" %}
 
-{% block test %}
-    <p>{{ test_macro('TTTTTTTTTTTTTTT') }} </p>
+{% import "macro/tests.html" as cm %}
+{% from "macro/tests.html" import test_macro %}
 
-    {% call test_macro2('Hong', 'bbb') %}
-      <p> This is app.html.call block </p>
+
+{% block test %}
+    <p>{{ cm.test_macro('TTTTTTTTTTTTTTT') }} </p>
+	<p>{{ test_macro('QQQQQQQQQ') }} </p>
+
+    {% call(x) cm.test_macro2('Hong', 'bbb') %}
+      <p> This is app.html.call block : {{x}} </p>
     {% endcall %}
     
 {% endblock %}

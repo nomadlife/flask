@@ -24,7 +24,7 @@ def top200():
 
 @app.route('/top100')
 def top100():
-    return render_template('app.html', title="MAIN!!")
+    return render_template('app.html', title="MAIN!!", ttt="testTTT")
 
 @app.route('/main')
 def main():
