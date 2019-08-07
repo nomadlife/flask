@@ -22,9 +22,27 @@ def top200():
 # def top102():
 #     return render_template('application2.html', title="MAIN2!!")
 
+class FormInput :    def __init__(self, id, name, value, checked, text):
+        self.id = id
+        self.name = name
+        self.value = value
+        self.checked = checked
+        self.text = text
+        self.type = type
+        
 @app.route('/top100')
 def top100():
-    return render_template('app.html', title="MAIN!!", ttt="testTTT")
+    rds = []
+    for i in [1,2,3]:
+        id = 'r' + str(i)
+        name = 'radiotest'
+        value = i
+        checked = ''
+        if i==2:
+            checked = 'checked'
+        text = 'RadioTest' + str(i)
+        rds.append(FormInput(id, name, value, checked, text))
+    return render_template('app.html', title="MAIN!!", ttt="testTTT", radioList=rds)
 
 @app.route('/main')
 def main():

@@ -1,18 +1,55 @@
 {% extends "base.html" %}
 
-{% import "macro/tests.html" as cm %}
+{% import "macro/tests.html" as cm with context %}
 {% from "macro/tests.html" import test_macro %}
-
+{% from "macro/forms.html" import input, radio, radios %}
 
 {% block test %}
-    <p>{{ cm.test_macro('TTTTTTTTTTTTTTT') }} </p>
+    <p>{{ttt}}::{{ cm.test_macro('TTTTTTTTTTTTTTT') }} </p>
 	<p>{{ test_macro('QQQQQQQQQ') }} </p>
 
     {% call(x) cm.test_macro2('Hong', 'bbb') %}
       <p> This is app.html.call block : {{x}} </p>
     {% endcall %}
     
+	<input type="text" id="userid" name="userid" value="123" class="form-control">
+	{{input('password','pw')}}
+	<textarea name="" id="" rows="5" class="form-control"></textarea>
+	
+
+	<form action="" class="container">
+		<div class="form-group">
+			{{radio('r1','rdo','val1','Value1')}}
+			{{radio('r2','rdo','val2','Value2','checked')}}
+			{{radio('r3','rdo','val3','Value3')}}
+		</div>
+		
+		
+		<div class="form-group">
+			<div class="form-check">
+				<input type="radio" class="form-check-input">
+				<label for="" class="form-check-label">
+				Default radio
+				</label>
+			</div>
+			<div class="form-check">
+				<input type="radio" class="form-check-input">
+				<label for="" class="form-check-label">
+				Second default radio\\\\\\\\\
+				</label>
+			</div>
+		</div>
+	{{radios(radioList)}}
+	</form>
+	
+	<select name="" id="">
+		<option value="{{val}}">{{text}}</option>
+		<option value=""></option>
+		<option value=""></option>
+	</select>
+	
 {% endblock %}
+
 
 {% block main %}
 
