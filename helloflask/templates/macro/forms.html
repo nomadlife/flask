@@ -19,6 +19,18 @@
 {%- endmacro %}
 
 
+{% macro checkbox(d) -%}
+<div class="form-group">
+	<textarea  
+		{% if id %}id="{{id}}" {% endif %} 
+		name="{{name}}" 
+		class="form-control {{class}}">
+		{{value}}
+	</textarea>
+</div>
+{%- endmacro %}
+
+
 {% macro radio(id, name, value='', text='', checked='', class='') %}
 	<div class="custom-control">
 		<input type="radio" class="custom-control-input {{class}}"
