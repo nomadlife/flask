@@ -2,7 +2,7 @@
 
 {% import "macro/tests.html" as cm with context %}
 {% from "macro/tests.html" import test_macro %}
-{% from "macro/forms.html" import input, radio, radios %}
+{% from "macro/forms.html" import input, radio, radios, textarea %}
 
 {% block test %}
     <p>{{ttt}}::{{ cm.test_macro('TTTTTTTTTTTTTTT') }} </p>
@@ -39,7 +39,11 @@
 				</label>
 			</div>
 		</div>
+
 	{{radios(radioList)}}
+
+  {{textarea('idta','content','default value','')}}
+
 	</form>
 	
 	<select name="" id="">
