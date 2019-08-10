@@ -52,10 +52,24 @@
   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mdl1">
       Launch modal
     </button>
+  <button type="button" class="btn btn-primary" onclick="openModal('mdl1')">
+      Launch-2 modal
+    </button>
 
-    {% call modal('mdl1','테스트모달') %}
+    {% call modal('mdl2','테스트모달2', 'fas fa-clock', True, "alert('111111')" ) %}
       <h3>Modal body</h3>
     {% endcall %}
+
+    {% call modal('mdl1','테스트모달', 'fas fa-clock', True, 'fn_test()' ) %}
+      <h3>Modal body</h3>
+      <script>
+      function fn_test(){
+        alert('qqqqqqqqqqqq');
+        closeModal('mdl1');
+      }
+      </script>
+    {% endcall %}
+
 	
 	<select name="" id="">
 		<option value="{{val}}">{{text}}</option>

@@ -76,7 +76,7 @@
 	</div>
 {% endmacro %}
 
-{% macro modal(id, title, icon='', isShowFooter=True ) %}
+{% macro modal(id, title, icon='', isShowFooter=True, ok_fn='') %}
 <div class="modal fade" id="{{id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -104,7 +104,7 @@
 
       <div class="modal-footer">
 		  <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-		  <button type="button" class="btn btn-primary">확인</button>
+		  <button type="button" class="btn btn-primary" onclick="{{ok_fn}}">확인</button>
 		</div>
 		{% endif %}
     </div>
