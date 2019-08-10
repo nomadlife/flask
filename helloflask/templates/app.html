@@ -5,6 +5,7 @@
 {% from "macro/forms.html" import input, radio, radios, textarea, checkbox, select, modal %}
 
 {% block test %}
+<p>{{ today | ymd('%y-%m') | safe }}</p>
     <p>{{ttt}}::{{ cm.test_macro('TTTTTTTTTTTTTTT') }} </p>
 	<p>{{ test_macro('QQQQQQQQQ') }} </p>
 

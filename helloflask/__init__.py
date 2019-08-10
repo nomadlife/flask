@@ -22,7 +22,15 @@ def top200():
 # def top102():
 #     return render_template('application2.html', title="MAIN2!!")
 
-class FormInput :    def __init__(self, id, name, value, checked, text):
+@app.template_filter('ymd')
+def datetime_ymd(dt, fmt='%m-%d'):
+    if isinstance(dt, date):
+        return "<strong>%s</strong>"%dt.strftime(fmt)
+    else:
+        return dt
+
+class FormInput :
+    def __init__(self, id, name, value, checked, text):
         self.id = id
         self.name = name
         self.value = value
@@ -42,7 +50,10 @@ def top100():
             checked = 'checked'
         text = 'RadioTest' + str(i)
         rds.append(FormInput(id, name, value, checked, text))
-    return render_template('app.html', title="MAIN!!", ttt="testTTT", radioList=rds)
+
+    # today = date.today()
+    today = datetime.now()
+    return render_template('app.html', title="MAIN!!", ttt="testTTT", radioList=rds, today=today)
 
 @app.route('/main')
 def main():
