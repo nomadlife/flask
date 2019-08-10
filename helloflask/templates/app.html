@@ -2,7 +2,7 @@
 
 {% import "macro/tests.html" as cm with context %}
 {% from "macro/tests.html" import test_macro %}
-{% from "macro/forms.html" import input, radio, radios, textarea, checkbox %}
+{% from "macro/forms.html" import input, radio, radios, textarea, checkbox, select, modal %}
 
 {% block test %}
     <p>{{ttt}}::{{ cm.test_macro('TTTTTTTTTTTTTTT') }} </p>
@@ -40,12 +40,22 @@
 			</div>
 		</div>
 
-	{{radios(radioList)}}
+    {{radios(radioList)}}
 
-  {{textarea('idta','content','default value')}}
+    {{textarea('idta','content','default value')}}
 
-  {{checkbox( dict(id='chk1', name='chkname1', checked='checked', text='TEXT') )}}
-	</form>
+    {{checkbox( dict(id='chk1', name='chkname1', checked='checked', text='TEXT') )}}
+    
+    {{select( [dict(id='selid1', text='seltext1', selected=True), dict(id='selid2', text='seltext2', selected=False)] )}}
+  </form>
+
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mdl1">
+      Launch modal
+    </button>
+
+    {% call modal('mdl1','테스트모달') %}
+      <h3>Modal body</h3>
+    {% endcall %}
 	
 	<select name="" id="">
 		<option value="{{val}}">{{text}}</option>
