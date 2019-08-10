@@ -21,12 +21,10 @@
 
 {% macro checkbox(d) -%}
 <div class="form-group">
-	<textarea  
-		{% if id %}id="{{id}}" {% endif %} 
-		name="{{name}}" 
-		class="form-control {{class}}">
-		{{value}}
-	</textarea>
+	<div class="custom-control custom-checkbox">
+		<input type="checkbox" class="custom-control-input" id="{{d.id}}" {{d.checked}}>
+		<label class="custom-control-label" for="{{d.id}}">{{d.text}}</label>
+	</div>
 </div>
 {%- endmacro %}
 
