@@ -5,8 +5,39 @@
 {% from "macro/forms.html" import input, radio, radios, textarea, checkbox, select, modal %}
 
 {% block test %}
-<p>{{ today | ymd('%y-%m') | safe }}</p>
-    <p>{{ttt}}::{{ cm.test_macro('TTTTTTTTTTTTTTT') }} </p>
+  <p>{{ today | ymd('%y-%m') | safe }}</p>
+  <p>{{ today | simpledate | safe }}</p>
+  <p>{{ 4149 | filesizeformat() }}</p>
+  <p>{{ 4096 | filesizeformat(True) }}</p>
+  <p>{{ "4096.53456" | float | round(2) }}</p>
+
+  <div>
+    {% for row in range(1,32) | batch(7,'TT') %}
+    <p>{{row}}</p>
+    {% endfor %}
+  </div>
+
+  <div>
+<table>
+    {% for row in range(1,32) | batch(7,'&nbsp') %}
+    <tr>
+      {% for col in row %}
+        <td>
+          {{col | safe}}
+        </td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+    </div>
+    
+  <pre>
+{{ 'abc' | center(40) }}
+{{ 'abcdgrdsdvdsasd' | center(40) }}
+{{ ('abcdgrdsdvdsasd' * 5) | wordwrap(40) }}
+{{ ('abcdgrdsdvdsasd' * 5) | truncate(40) }}
+  </pre>
+  <p>{{ttt}}::{{ cm.test_macro('TTTTTTTTTTTTTTT') }} </p>
 	<p>{{ test_macro('QQQQQQQQQ') }} </p>
 
     {% call(x) cm.test_macro2('Hong', 'bbb') %}

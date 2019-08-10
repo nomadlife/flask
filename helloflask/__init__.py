@@ -29,6 +29,20 @@ def datetime_ymd(dt, fmt='%m-%d'):
     else:
         return dt
 
+
+@app.template_filter('simpledate')
+def simpledate(dt, fmt='%m-%d'):
+    if not isinstance(dt, date):
+        dt = datetime.strptime(dt, '%Y-%m-%d %H:%M')
+
+    if (datetime.now() - dt).days < 1:
+        fmt = "%H:%M"
+    else:
+        fmt = "%m/%d"
+
+    return "<strong>%s</strong>"%dt.strftime(fmt)
+
+
 class FormInput :
     def __init__(self, id, name, value, checked, text):
         self.id = id
@@ -52,7 +66,8 @@ def top100():
         rds.append(FormInput(id, name, value, checked, text))
 
     # today = date.today()
-    today = datetime.now()
+    # today = datetime.now()
+    today = '2019-08-10 09:20'
     return render_template('app.html', title="MAIN!!", ttt="testTTT", radioList=rds, today=today)
 
 @app.route('/main')
