@@ -43,6 +43,33 @@ def simpledate(dt, fmt='%m-%d'):
 
     return "<strong>%s</strong>"%dt.strftime(fmt)
 
+def make_date(dt, fmt):
+    if not isinstance(dt, date):
+        return datetime.strptime(dt,fmt)
+    else:
+        return dt
+
+@app.template_filter('sdt')
+def sdt(dt, fmt='%Y-%m-%d'):
+    d = make_date(dt, fmt)
+    wd = d.weekday()
+    # if wd == 6:
+    #     return -1
+    # else:
+    #     return wd * -1
+    return (1 if wd == 6 else wd) * -1
+
+@app.template_filter('month')
+def month(dt, fmt='%Y-%m-%d'):
+    d = make_date(dt, fmt)
+    return d.month
+
+@app.template_filter('edt')
+def edt(dt, fmt='%Y-%m-%d'):
+    d = make_date(dt, fmt)
+    nextMonth = d + relativedelta(months=1)
+    return (nextMonth - timedelta(1)).day + 1
+
 
 class FormInput :
     def __init__(self, id, name, value, checked, text):
@@ -52,7 +79,28 @@ class FormInput :
         self.checked = checked
         self.text = text
         self.type = type
-        
+
+
+@app.route('/top101')
+def top101():
+    rds = []
+    for i in [1,2,3]:
+        id = 'r' + str(i)
+        name = 'radiotest'
+        value = i
+        checked = ''
+        if i==2:
+            checked = 'checked'
+        text = 'RadioTest' + str(i)
+        rds.append(FormInput(id, name, value, checked, text))
+
+    # today = date.today()
+    # today = datetime.now()
+    today = '2019-08-10 09:20'
+    year = 2019
+    return render_template('app.html', year=year, title="MAIN!!", ttt="testTTT", radioList=rds, today=today)
+
+
 @app.route('/top100')
 def top100():
     rds = []
