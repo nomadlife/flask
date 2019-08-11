@@ -34,23 +34,32 @@
     </div>
 {% endmacro %}
 
+
+
 {% block test %}
 
   <div>
     {{cal('2019-02-01')}}
 
-    <h1 class="text-center">{{year}}년</h1>
-    {% for mm in range(1,13) | batch(3) %}
+    <h1 class="text-center">
+      <small class="text-muted">
+          <a href="/top101?year={{year-1}}">{{ year - 1 }}</a>
+        </small>
+      {{year}}년
+      <small class="text-muted">
+        <a href="/top101?year={{year+1}}">{{ year + 1 }}</a>
+      </small>
+    </h1>
     <div class="row">
+    {% for mm in range(1,13) | batch(3) %}
       {% for m in mm %}
-        <div class="col-4">
+        <div class="col">
           {% set dt = "%s-%s-01" % (year, m) %}
           {{cal(dt)}}
         </div>
       {% endfor %}
-
+      {% endfor %}
     </div>
-    {% endfor %}
   </div>
 
   <p>{{ today | ymd('%y-%m') | safe }}</p>

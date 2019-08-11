@@ -97,7 +97,8 @@ def top101():
     # today = date.today()
     # today = datetime.now()
     today = '2019-08-10 09:20'
-    year = 2019
+    # year = 2019
+    year = request.args.get('year', date.today().year, int)
     return render_template('app.html', year=year, title="MAIN!!", ttt="testTTT", radioList=rds, today=today)
 
 
