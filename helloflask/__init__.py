@@ -1,6 +1,7 @@
 from flask import Flask, g, request, Response, make_response
 from flask import session, render_template, Markup
 from datetime import datetime, date, timedelta
+from dateutil.relativedelta import relativedelta
 
 app = Flask(__name__)
 app.debug = True
@@ -68,7 +69,12 @@ def top100():
     # today = date.today()
     # today = datetime.now()
     today = '2019-08-10 09:20'
-    return render_template('app.html', title="MAIN!!", ttt="testTTT", radioList=rds, today=today)
+    d = datetime.strptime("2019-02-01", "%Y-%m-%d")
+    sdt = d.weekday() * -1
+    nextMonth = d + relativedelta(months=1)
+    mm = d.month
+    edt = (nextMonth - timedelta(1)).day + 1
+    return render_template('app.html', sdt = sdt, edt = edt, mm = mm, title="MAIN!!", ttt="testTTT", radioList=rds, today=today)
 
 @app.route('/main')
 def main():

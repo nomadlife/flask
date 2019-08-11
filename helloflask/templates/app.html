@@ -17,18 +17,32 @@
     {% endfor %}
   </div>
 
-  <div>
-<table>
-    {% for row in range(1,32) | batch(7,'&nbsp') %}
-    <tr>
-      {% for col in row %}
-        <td>
-          {{col | safe}}
-        </td>
-      {% endfor %}
-    </tr>
-    {% endfor %}
-</table>
+  <div class="container text-center">
+    <h1>{{mm}} 월</h1>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          {%- for w in '일월화수목금토' %}
+          <th>{{w}}</th>
+          {% endfor -%}
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in range(sdt,edt) | batch(7,'&nbsp') %}
+        <tr>
+          {% for col in row %}
+            <td>
+              {% if ((col|int) <= 0) %}
+                &nbsp;
+              {% else %}
+                {{col | safe}}
+              {% endif %}
+            </td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
     </div>
     
   <pre>
