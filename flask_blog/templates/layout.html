@@ -16,6 +16,7 @@
 <link href="{{url_for('static',filename='css/style.min.css')}}" rel="stylesheet">
 </head>
 <body>
+    <header>
         <!-- Navbar -->
         <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
                 <div class="container">
@@ -77,15 +78,16 @@
                   </div>
           
                 </div>
-              </nav>
-              <!-- Navbar -->
+        </nav>
+        <!-- Navbar -->
+    </header>
 
-    <div class="container">
-        {% block content %}
-        {% endblock %}
-
-    </div>
-
+    <main class="mt-5 pt-5">
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>
     <!-- JQuery -->
 <script type="text/javascript" src="{{url_for('static',filename='js/3.4.1/jquery.min.js')}}"></script>
 <!-- Bootstrap tooltips -->
