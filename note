@@ -1,0 +1,26 @@
+1. flaskapp.py
+from helloflask import app
+app.run(host='0.0.0.0') # 127.0.0.1
+
+>> python flaskapp.py
+
+
+2. 
+
+export FLASK_APP=flaskblog.py
+flask run
+
++ debug mode
+export FLASK_DEBUG=1
+flask run
+
+3. 
+flaskapp.py
+
+..
+...
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+python flaskapp.py 
