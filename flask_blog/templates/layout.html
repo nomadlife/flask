@@ -22,7 +22,7 @@
                 <div class="container">
           
                   <!-- Brand -->
-                  <a class="navbar-brand waves-effect" href="/">
+                  <a class="navbar-brand waves-effect" href="{{ url_for('home') }}">
                     <strong class="blue-text">WEB</strong>
                   </a>
           
@@ -37,24 +37,24 @@
           
                     <!-- Left -->
                     <ul class="navbar-nav mr-auto">
-                      <li class="nav-item active">
-                        <a class="nav-link waves-effect" href="#">Home
-                          <span class="sr-only">(current)</span>
+                      <li class="nav-item">
+                        <a class="nav-link waves-effect" href="{{ url_for('home') }}">Home
+                          <!-- <span class="sr-only">(current)</span> -->
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link waves-effect" href="/about">About</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link waves-effect" href="/register">Register</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link waves-effect" href="/login">Log In</a>
+                        <a class="nav-link waves-effect" href="{{ url_for('about') }}">About</a>
                       </li>
                     </ul>
-          
+                    
                     <!-- Right -->
                     <ul class="navbar-nav nav-flex-icons">
+                        <li class="nav-item">
+                          <a class="nav-link waves-effect" href="{{ url_for('register') }}">Register</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link waves-effect" href="{{ url_for('login') }}">Log In</a>
+                        </li>
                       <li class="nav-item">
                         <a href="https://www.facebook.com/mdbootstrap" class="nav-link waves-effect" target="_blank">
                           <i class="fab fa-facebook-f"></i>
@@ -82,6 +82,7 @@
 
     <main class="mt-5 pt-5">
         <div class="container">
+
             {% with messages = get_flashed_messages(with_categories=true)%}
                 {% if messages %}
                     {% for category, message in messages %}
@@ -91,6 +92,7 @@
                     {% endfor %}
                 {% endif %}
             {% endwith %}
+
             {% block content %}
             {% endblock %}
         </div>
