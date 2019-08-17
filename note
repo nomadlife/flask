@@ -51,3 +51,15 @@ Post.query.first()
 
 db.drop_all()
 
+*************
+pip install flask-bcrypt
+
+from flask_bcrypt import Bcrypt
+bcrypt = Bcrypt()
+bcrypt.generate_password_hash('testing')
+bcrypt.generate_password_hash('testing').decode('utf-8')
+hashed_pw = bcrypt.generate_password_hash('testing').decode('utf-8')
+bcrypt.check_password_hash(hashed_pw, 'testing')
+
+
+*************************
