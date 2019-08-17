@@ -1,26 +1,53 @@
 1. flaskapp.py
 from helloflask import app
 app.run(host='0.0.0.0') # 127.0.0.1
-
 >> python flaskapp.py
 
-
-2. 
-
+2. flaskblog.py
 export FLASK_APP=flaskblog.py
-flask run
+export FLASK_DEBUG=1           -->>  (for debug mode)
+>> flask run
 
-+ debug mode
-export FLASK_DEBUG=1
-flask run
-
-3. 
-flaskapp.py
-
+3. flaskapp.py
 ..
 ...
-
 if __name__ == '__main__':
     app.run(debug=True)
+>> python flaskapp.py 
 
-python flaskapp.py 
+pip list
+flask
+flask-wtf
+flask-sqlalchemy
+
+
+*******db
+from flaskblog import db
+db.create_all()
+from flaskblog import User, Post
+user_1 = User(username='user1', email='email11@a.com', password='pw111')
+db.session.add(user_1)
+user_1 = User(username='user1', email='email11@a.com', password='pw111')
+db.session.add(user_2)
+db.session.commit()   --->> error 
+
+User.query.all()
+User.query.first()
+User.query.filter_by(username='user1').all()
+User.query.filter_by(username='user1').first()
+user = User.query.filter_by(username='user1').first()
+user.id
+User.query.get(1)
+
+user.posts
+post_1 = Post(title='title1', content='first post content', user_id=user.id)
+post_2 = Post(title='title2', content='second post content', user_id=user.id)
+db.session.add(post_1)
+db.session.add(post_2)
+db.session.commit()
+user.posts
+
+Post.query.first()
+
+db.drop_all()
+
