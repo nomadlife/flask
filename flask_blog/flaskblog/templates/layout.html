@@ -50,6 +50,9 @@
                     <!-- Right -->
                     <ul class="navbar-nav nav-flex-icons">
                       {% if current_user.is_authenticated %}
+                      <li class="nav-item">
+                          <a class="nav-link waves-effect" href="{{ url_for('account') }}">Account</a>
+                        </li>
                         <li class="nav-item">
                           <a class="nav-link waves-effect" href="{{ url_for('logout') }}">Log Out</a>
                         </li>
