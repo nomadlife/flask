@@ -65,3 +65,5 @@ bcrypt.check_password_hash(hashed_pw, 'testing')
 
 *************************
 pip install flask-login
+
+pip install pillow
