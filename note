@@ -31,6 +31,7 @@ user_1 = User(username='user1', email='email11@a.com', password='pw111')
 db.session.add(user_2)
 db.session.commit()   --->> error 
 
+(from flaskblog.models import User)
 User.query.all()
 User.query.first()
 User.query.filter_by(username='user1').all()
