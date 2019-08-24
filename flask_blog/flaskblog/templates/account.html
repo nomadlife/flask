@@ -3,17 +3,20 @@
 <h1>{{ current_user.username }} page</h1>
 <div class="content-section">
     <div class="media">
-        <img src="{{ image_file }}" alt="" class="round-circle account-image rounded">
+        <img src="{{ image_file }}" alt="" class="rounded-circle account-image rounded">
         <div class="media-body">
             <h2 class="account-heading">{{ current_user.username }}</h2>
             <p class="text-secondary">{{ current_user.email }}</p>
         </div>
     </div>
+    <br>
 
         <form action="" method="post" enctype="multipart/form-data">
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4">Account Info</legend>
+
+                <!-- username -->
                 <div class="form-group">
                     {{ form.username.label(class="form-control-label") }}
                     {% if form.username.errors %}
@@ -28,6 +31,8 @@
                     {% endif %}
                     
                 </div>
+
+                <!-- email -->
                 <div class="form-group">
                     {{ form.email.label(class="form-control-label") }}
                     {% if form.email.errors %}
@@ -42,6 +47,7 @@
                     {% endif %}
                 </div>
             </fieldset>
+
             <div class="form-group">
                     {{ form.picture.label() }}
                     {{ form.picture(class="form-control-file") }}
@@ -51,6 +57,8 @@
                         {% endfor %}
                     {% endif %}
             </div>
+
+            <!-- submit button -->
             <div class="form-group">
                 {{ form.submit(class="btn-outline-info") }}
             </div>
